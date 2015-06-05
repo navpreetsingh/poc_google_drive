@@ -240,10 +240,9 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :google_oauth2, AuthDetails["GOOGLE_CLIENT_ID"], AuthDetails["GOOGLE_CLIENT_SECRET"], {
-      :name => "google",
-      :scope => ['https://www.googleapis.com/auth/drive.file', 'email', 'profile'],
-      :prompt => "select_account",
+  config.omniauth :google_oauth2, AuthDetails["GOOGLE_CLIENT_ID"], AuthDetails["GOOGLE_CLIENT_SECRET"], {      
+      :scope => "email, https://www.googleapis.com/auth/drive",
+      :prompt => 'select_account'      
     } 
 
   # ==> Warden configuration

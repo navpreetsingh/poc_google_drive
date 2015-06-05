@@ -1,10 +1,15 @@
+require 'rubygems'
+require 'google/api_client'
 require 'launchy'
+require 'byebug'
 
 # Get your credentials from the console
-CLIENT_ID = AuthDetails["GOOGLE_CLIENT_ID"]
-CLIENT_SECRET = AuthDetails["GOOGLE_CLIENT_SECRET"]
+CLIENT_ID = "286769101745-uft1t84cg15e981m5dc2hln96qb7olfl.apps.googleusercontent.com"
+#AuthDetails["GOOGLE_CLIENT_ID"]
+CLIENT_SECRET = "Zn6IpXs7lNKc8MQxTF4TqGds"
+# AuthDetails["GOOGLE_CLIENT_SECRET"]
 OAUTH_SCOPE = 'https://www.googleapis.com/auth/drive'
-REDIRECT_URI = 'http://localhost:3000/oauth2callback'
+REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob'
 
 # Create a new API client & load the Google Drive API
 client = Google::APIClient.new
@@ -23,6 +28,7 @@ Launchy.open(uri)
 $stdout.write  "Enter authorization code: "
 client.authorization.code = gets.chomp
 client.authorization.fetch_access_token!
+debugger
 
 # Insert a file
 file = drive.files.insert.request_schema.new({
