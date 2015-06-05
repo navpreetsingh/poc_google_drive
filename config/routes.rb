@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
   get 'dashboard/home'
+  get 'dashboard/google_oauth2'
+  post "dashboard/upload"
 
-  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => {:omniauth_callbacks => "dashboard" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'dashboard#home'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

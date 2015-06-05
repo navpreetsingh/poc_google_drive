@@ -1,0 +1,45 @@
+ 
+<table>
+	<tr>
+		<th>Name</th>
+		<th>type</th>	
+		<th>Download Link</th>
+	</tr>
+	<% @google_session.files.each do |file| %>
+		<tr>		
+			<td><%= file.title %> </td>
+			<% type = if file.class == GoogleDrive::Collection
+					"Folder" 
+				elsif file.class == GoogleDrive::Spreadsheet
+				   	"Spreadsheet"
+				else
+					"File"
+				end 
+			%> 
+			<td> <%= type %> </td>
+			<% file_path = Rails.root.join("public/google_drive/" + file.title) %>
+			<td>							
+				<%=	if type == "File"
+						link_to "Download", file.download_url
+					elsif type == "Spreadsheet"
+						link_to "Download", file.export_links["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"] 
+					else
+						""
+					end
+				%>
+			</td>
+		</tr>
+	<% end %> 	
+</table>
+
+<div>
+	<p>Create Folder</p>
+	<%= form_tag "/dashboard/upload", multipart: true do %>
+		<%= file_field_tag "File" %> 
+		<%= submit_tag "Submit" %> 
+	<% end %> 
+	<!-- <form action='' method='POST' enctype='multipart/form-data'>
+	    <input type='file' name='userFile'><br>
+	    <input type='submit' name='upload_btn' value='upload'>
+	</form> -->
+</div>
