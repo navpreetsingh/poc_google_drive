@@ -1,3 +1,27 @@
+<div>
+	<p>Upload File</p>
+	<%= form_tag "/dashboard/upload", multipart: true do %>
+		<%= file_field_tag "File" %> 
+		<%= submit_tag "Submit" %> 
+	<% end %> 	
+</div>
+
+<div>
+	<p>Create Folder</p>
+	<%= form_tag "/dashboard/cr_folder" do %>
+		<%= text_field_tag :folder %> 
+		<%= submit_tag "Submit" %> 
+	<% end %> 	
+</div>
+<div>
+	<p>Search File (Full Name of file with extension) [Could also be implemented for full text]</p>
+	<%= form_tag "/dashboard/working_platform" do %>
+		<%= search_field_tag :search %> 
+		<%= submit_tag "Submit" %> 
+	<% end %>
+<div>
+
+</div>
  
 <table>
 	<tr>
@@ -5,7 +29,7 @@
 		<th>type</th>	
 		<th>Download Link</th>
 	</tr>
-	<% @google_session.files.each do |file| %>
+	<% @files.each do |file| %>
 		<tr>		
 			<td><%= file.title %> </td>
 			<% type = if file.class == GoogleDrive::Collection
@@ -32,14 +56,3 @@
 	<% end %> 	
 </table>
 
-<div>
-	<p>Create Folder</p>
-	<%= form_tag "/dashboard/upload", multipart: true do %>
-		<%= file_field_tag "File" %> 
-		<%= submit_tag "Submit" %> 
-	<% end %> 
-	<!-- <form action='' method='POST' enctype='multipart/form-data'>
-	    <input type='file' name='userFile'><br>
-	    <input type='submit' name='upload_btn' value='upload'>
-	</form> -->
-</div>

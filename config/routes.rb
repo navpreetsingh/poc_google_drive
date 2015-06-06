@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
   get 'dashboard/home'
-  get 'dashboard/google_oauth2'
+  get "auth/google_oauth2/callback", to: 'dashboard#google_oauth2'
   post "dashboard/upload"
+  match "dashboard/working_platform", via: [:post, :get]
+  post "dashboard/cr_folder"
 
-  devise_for :users, :controllers => {:omniauth_callbacks => "dashboard" }
+  # devise_for :users, :controllers => {:omniauth_callbacks => "dashboard" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
