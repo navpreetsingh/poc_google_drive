@@ -1,58 +1,62 @@
-<div>
-	<p>Upload File</p>
+<div class = "row">
+	<p><b>Upload File</b></p>
 	<%= form_tag "/dashboard/upload", multipart: true do %>
-		<%= file_field_tag "File" %> 
+		<%= file_field_tag "File", style: "padding-left:635px;" %> 
 		<%= submit_tag "Submit" %> 
 	<% end %> 	
 </div>
 
-<div>
-	<p>Create Folder</p>
+<div class = "row">
+	<p><b>Create Folder</b></p>
 	<%= form_tag "/dashboard/cr_folder" do %>
 		<%= text_field_tag :folder %> 
 		<%= submit_tag "Submit" %> 
 	<% end %> 	
 </div>
-<div>
-	<p>Search File (Full Name of file with extension) [Could also be implemented for full text]</p>
+<div class = "row">
+	<p><b>Search File</b> (Full Name of file with extension)</p>
 	<%= form_tag "/dashboard/working_platform" do %>
 		<%= search_field_tag :search %> 
 		<%= submit_tag "Submit" %> 
 	<% end %>
-<div>
-
 </div>
- 
-<table>
-	<tr>
-		<th>Name</th>
-		<th>type</th>	
-		<th>Download Link</th>
-	</tr>
-	<% @files.each do |file| %>
-		<tr>		
-			<td><%= file.title %> </td>
-			<% type = if file.class == GoogleDrive::Collection
-					"Folder" 
-				elsif file.class == GoogleDrive::Spreadsheet
-				   	"Spreadsheet"
-				else
-					"File"
-				end 
-			%> 
-			<td> <%= type %> </td>
-			<% file_path = Rails.root.join("public/google_drive/" + file.title) %>
-			<td>							
-				<%=	if type == "File"
-						link_to "Download", file.download_url
-					elsif type == "Spreadsheet"
-						link_to "Download", file.export_links["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"] 
-					else
-						""
-					end
-				%>
-			</td>
-		</tr>
-	<% end %> 	
-</table>
+<div class = "row">
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>type</th>	
+				<th>Download Link</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @files.each do |file| %>
+				<tr>		
+					<td><%= file.title %> </td>
+					<% type = if file.class == GoogleDrive::Collection
+							"Folder" 
+						elsif file.class == GoogleDrive::Spreadsheet
+						   	"Spreadsheet"
+						else
+							"File"
+						end 
+					%> 
+					<td> <%= type %> </td>
+					<% file_path = Rails.root.join("public/google_drive/" + file.title) %>
+					<td>							
+						<%=	if type == "File"
+								link_to "Download", file.download_url
+							elsif type == "Spreadsheet"
+								link_to "Download", file.export_links["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"] 
+							else
+								""
+							end
+						%>
+					</td>
+				</tr>
+			<% end %> 
+		</tbody>		
+	</table>
+</div>
+
 
