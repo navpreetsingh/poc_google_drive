@@ -1,6 +1,6 @@
 if Rails.env == "development"
 	AuthDetails = YAML.load_file(File.join(Rails.root, 'config', 'auth_development.yml'))
-elsif Rails.env == "production"
+else
 	AuthDetails = YAML.load_file(File.join(Rails.root, 'config', 'auth_production.yml'))
 end
 
