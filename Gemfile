@@ -36,6 +36,8 @@ gem 'google_drive'
 gem "omniauth-google-oauth2"
 gem "google-api-client"
 
+gem 'bootstrap-sass', '~> 3.3.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -48,8 +50,7 @@ group :development, :test do
   gem 'spring'
 end
 
-group :production do
-	gem 'pg'
+group :production do	
 	gem 'rails_12factor', '0.0.2'
 end
 
