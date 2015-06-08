@@ -1,4 +1,10 @@
-AuthDetails = YAML.load_file(File.join(Rails.root, 'config', 'auth.yml'))
+if Rails.env == "Development"
+	AuthDetails = YAML.load_file(File.join(Rails.root, 'config', 'auth_development.yml'))
+elsif Rails.env == "Production"
+	AuthDetails = YAML.load_file(File.join(Rails.root, 'config', 'auth_production.yml'))
+end
+
+
 
 Rails.application.config.middleware.use OmniAuth::Builder do
 	provider :google_oauth2, AuthDetails["GOOGLE_CLIENT_ID"], 
