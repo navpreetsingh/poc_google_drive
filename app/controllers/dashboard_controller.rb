@@ -4,9 +4,10 @@ class DashboardController < ApplicationController
   def home
   end
   
-  def google_oauth2
-    google_request = request.env["omniauth.auth"]    
+  def google_oauth2        
+    google_request = request.env["omniauth.auth"]        
   	session[:google_auth] = google_request.credentials.token
+    puts client    
     redirect_to dashboard_working_platform_path	
   end
   
@@ -16,8 +17,7 @@ class DashboardController < ApplicationController
     # client.authorization.access_token = session[:google_auth]
     # parameters = {}
     # parameters["q"] = "fullText contains 'abc'"
-    # files = client.execute(:api_method => drive.files.list, :parameters => parameters)
-    # debugger
+    # files = client.execute(:api_method => drive.files.list, :parameters => parameters)   
     if params[:search].present?
     	@files = []  
     	@files << @google_session.file_by_title(params[:search])

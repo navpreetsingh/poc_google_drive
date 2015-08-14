@@ -32,7 +32,7 @@ gem 'turbolinks'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'google_drive'
+# gem 'google_drive'
 gem "omniauth-google-oauth2"
 gem "google-api-client"
 
