@@ -1,29 +1,28 @@
 class DashboardController < ApplicationController  
-  before_action :google_session, only: [:working_platform, :upload, :cr_folder]
+  before_action :client, only: [:working_platform, :upload, :cr_folder]
   
   def home
   end
   
-  def google_oauth2        
-    google_request = request.env["omniauth.auth"]        
-  	session[:google_auth] = google_request.credentials.token
-    puts client    
+  def google_oauth2    
+    # google_request = request.env["omniauth.auth"]
+    # google_info = google_request.info
+    # google_credentials = google_request.credentials    
+    # User.create(first_name: google_info.first_name, last_name: google_info.last_name, email: google_info.email, image_link: google_info.image, access_token: google_credentials.token, expires_at: Time.at(google_credentials.expires_at), refresh_token: google_credentials.refresh_token)        
+  	# session[:access_token] = google_request.credentials.token    
     redirect_to dashboard_working_platform_path	
   end
   
   def working_platform
-    # client = Google::APIClient.new(:application_name => 'Example Ruby application',:application_version => '1.0.0')
-    # drive = client.discovered_api('drive', 'v2')
-    # client.authorization.access_token = session[:google_auth]
-    # parameters = {}
-    # parameters["q"] = "fullText contains 'abc'"
-    # files = client.execute(:api_method => drive.files.list, :parameters => parameters)   
-    if params[:search].present?
-    	@files = []  
-    	@files << @google_session.file_by_title(params[:search])
+    if params[:search].present?                 	
+    	@files = @client.search_list(params[:search])
+    elsif params[:parent_id].present?   
+      @files = @client.children_list(params[:parent_id])       
+    elsif params[:back].present?
+      @files = @client.parent_list(params[:back])
     else
-    	@files = @google_session.files
-    end    
+  	  @files = @client.root_list      
+    end   
   end
   
   def failure 

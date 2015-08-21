@@ -206,6 +206,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.3)
   byebug
   google-api-client
+  hashie
   jquery-rails
   omniauth-google-oauth2
   pg
