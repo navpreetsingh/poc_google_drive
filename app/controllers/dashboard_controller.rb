@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController  
   before_action :client, only: [:working_platform, :upload, :cr_folder]
-  
+  layout :false, only: [:google90f485b9a1a7ba51]
   def home
   end
   
