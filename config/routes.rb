@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post "dashboard/upload"
   match "dashboard/working_platform", via: [:post, :get]
   post "dashboard/cr_folder"
-  get "google90f485b9a1a7ba51.html" => "dashboard#{}google90f485b9a1a7ba51"
+  get "google90f485b9a1a7ba51.html" => "dashboard#google90f485b9a1a7ba51"
 
   # devise_for :users, :controllers => {:omniauth_callbacks => "dashboard" }
   # The priority is based upon order of creation: first created -> highest priority.
