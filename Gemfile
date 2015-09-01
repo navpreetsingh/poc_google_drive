@@ -29,6 +29,8 @@ gem 'hashie'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'rack-cors', :require => 'rack/cors'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -51,7 +53,6 @@ group :development, :test do
 end
 
 group :production do	
-	gem 'pg'
 	gem 'rails_12factor', '0.0.2'
 end
 
