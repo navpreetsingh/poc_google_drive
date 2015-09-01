@@ -5,11 +5,11 @@ class DashboardController < ApplicationController
   end
   
   def google_oauth2    
-    # google_request = request.env["omniauth.auth"]
-    # google_info = google_request.info
-    # google_credentials = google_request.credentials    
-    # User.create(first_name: google_info.first_name, last_name: google_info.last_name, email: google_info.email, image_link: google_info.image, access_token: google_credentials.token, expires_at: Time.at(google_credentials.expires_at), refresh_token: google_credentials.refresh_token)        
-  	# session[:access_token] = google_request.credentials.token    
+    google_request = request.env["omniauth.auth"]
+    google_info = google_request.info
+    google_credentials = google_request.credentials    
+    User.create(first_name: google_info.first_name, last_name: google_info.last_name, email: google_info.email, image_link: google_info.image, access_token: google_credentials.token, expires_at: Time.at(google_credentials.expires_at), refresh_token: google_credentials.refresh_token)        
+  	session[:access_token] = google_request.credentials.token    
     redirect_to dashboard_working_platform_path	
   end
   
