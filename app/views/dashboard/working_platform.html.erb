@@ -44,10 +44,13 @@
 				<% end %>					 
 					<td> <%= file.mimeType %> </td>					
 					<td> <%= link_to "Download", file.downloadUrl %> </td>
+					<td><button onclick="s.showSettingsDialog()">Share</button>
+</td>
 				</tr>				
 			<% end %> 
 		</tbody>		
 	</table>
 </div>
+
 
 

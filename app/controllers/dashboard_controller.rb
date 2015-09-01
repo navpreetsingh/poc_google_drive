@@ -42,4 +42,8 @@ class DashboardController < ApplicationController
     redirect_to dashboard_working_platform_path 
   end
 
+  def google90f485b9a1a7ba51
+
+  end
+
 end
